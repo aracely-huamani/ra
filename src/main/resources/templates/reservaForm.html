@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head  th:replace="/layout/template :: header" >
+</head>
+<body>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-12">
+			<nav th:replace="/layout/template :: navegacion"></nav>
+			<div class="card">
+				<div class="card-header" ></div>
+				<div class="card-body">
+				<h3 th:if="ERROR!=null" th:text="${ERROR}" style="color:red"></h3>
+					<form th:action="@{/reservas/insertar}" th:object="${reserva}" method="POST">
+						<div class="form-group">
+							<label for="id">Cliente</label> 
+							<select th:field="*{cliente}" class="form-control">
+
+		                         <option value=""> -- </option>
+		                         <option  th:each="cliente : ${clientes}" th:value="${cliente.nombres}" th:text="${cliente.nombres}"/>
+		                  	</select>
+						</div>
+						<div class="form-group">
+							<label for="id">Destino</label> 
+	           				 <select th:field="*{destino}" class="form-control">
+		                         <option value=""> -- </option>
+		                         <option  th:each="destino : ${destinos}" th:value="${destino.ciudad} " th:text="${destino.ciudad} "/>
+
+		                  	</select>
+						</div>
+						<div class="form-group">
+							<label for="cantidad">Cantidad</label>
+							<input type="text" class="form-control" th:field="*{cantidad}" name="cantidad">
+						</div>
+						
+
+						<div class="form-group">
+							<label for="lorigen">Lugar Origen</label>
+							<input type="text" class="form-control" th:field="*{lorigen}" name="lorigen">
+						</div>
+						
+						
+						<div class="form-group">
+							<label for="fsalida">Fecha Salida</label>
+							<input type="text" class="form-control" th:field="*{fsalida}" name="fsalida">
+						</div>
+						
+						<div class="form-group">
+							<label for="fretorno">Fecha Retorno</label>
+							<input type="text" class="form-control" th:field="*{fretorno}" name="fretorno">
+						</div>
+						
+						<div class="form-group">
+							<label for="pago">Pago</label>
+							<input type="text" class="form-control" th:field="*{pago}" name="pago">
+						</div>
+						<input type="submit" th:value="${btn}" class="btn btn-primary">
+					</form>
+				</div>
+			</div>
+		</div>		
+	</div>
+</div>
+</body>
+</html>
